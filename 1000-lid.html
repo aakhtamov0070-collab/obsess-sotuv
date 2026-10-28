@@ -373,7 +373,7 @@ footer a{color:var(--mute)}
   <div class="wrap narrow">
     <img class="cover-sm rv" src="lm-cover.jpg" alt="“30 kun ichida kuniga 1000 lid” qo‘llanmasi muqovasi" width="800" height="1200" loading="lazy">
     <h2 class="rv">Qo‘llanmani hoziroq<br>bepul oling.</h2>
-    <p class="sub rv">Ism va raqamingizni qoldiring — PDF shu zahoti ochiladi.</p>
+    <p class="sub rv">Ism va raqamingizni qoldiring — keyingi sahifada qo‘llanmani Telegram orqali olasiz.</p>
     <button class="btn y cta rv" type="button" data-open="final">PDF ni bepul olish</button>
     <p class="fine">72 bet · 30 daqiqada o‘qiladi · bepul</p>
   </div>
@@ -384,7 +384,7 @@ footer a{color:var(--mute)}
   <div class="sheet" id="sheet">
     <button class="x" type="button" data-close aria-label="Yopish">×</button>
     <h3 class="t" id="mTitle">Qo‘llanmani qayerga yuboraylik?</h3>
-    <p class="s">Ism va raqamingizni qoldiring — PDF shu zahoti ochiladi.</p>
+    <p class="s">Ism va raqamingizni qoldiring — keyingi sahifada qo‘llanmani Telegram orqali olasiz.</p>
     <form class="form" data-src="popup" novalidate>
       <div class="in">
         <div class="row">
@@ -392,7 +392,7 @@ footer a{color:var(--mute)}
           <div class="field"><input name="phone" type="tel" placeholder="+998 __ ___ __ __" autocomplete="tel" inputmode="tel" aria-label="Telefon raqamingiz" required></div>
         </div>
         <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <button class="btn y" type="submit">PDF ni olish</button>
+        <button class="btn y" type="submit">Qo‘llanmani olish</button>
         <p class="msg" role="alert"></p>
         <p class="fine">Raqamingiz faqat qo‘llanma va foydali materiallar uchun ishlatiladi.</p>
       </div>
@@ -410,7 +410,9 @@ footer a{color:var(--mute)}
 const CONFIG = {
   magnet: "1000-lid",
   endpoint: "https://pulse.obsess.uz/api/lm/lead",
-  telegram: "https://t.me/obsessceo"
+  telegram: "https://t.me/obsessceo",
+  /* forma yuborilgach — alohida rahmat sahifasi, u yerdan Telegram postga */
+  thanks: "1000-lid-rahmat"
 };
 /* PDF shu sahifa bilan birga statik turadi (GitHub Pages) */
 let PDF = '1000-lid-tizimi-Obsess-q7x2k9.pdf';
@@ -497,7 +499,10 @@ document.querySelectorAll('form.form').forEach(form=>{
 
     LAST = {name, phone};
     if(window.fbq) fbq('track','Lead',{content_name:'1000 lid tizimi (PDF)', lead_magnet:CONFIG.magnet},{eventID:eventId});
-    showDone(name);
+    try{ sessionStorage.setItem('lm1000', JSON.stringify({name, phone, failed:!SENT_OK})); }catch(x){}
+    /* pixel so'rovi ketishiga ulgurishi uchun */
+    await new Promise(r=>setTimeout(r,350));
+    location.href = CONFIG.thanks;
   });
 });
 
