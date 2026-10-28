@@ -49,14 +49,35 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;height:5
 .nav-cta{font-size:13px;font-weight:600;color:var(--black);background:var(--y);border-radius:980px;padding:7px 15px;text-decoration:none;transition:background .2s}
 .nav-cta:hover{background:var(--y2)}
 
-/* hero */
-.hero{text-align:center;padding:72px 0 0}
-.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:var(--yk);background:#FFF6CC;border-radius:980px;padding:6px 14px;margin-bottom:22px}
+/* hero — sarlavha, kitob va tugma birinchi ekranga sig'adi */
+.hero{min-height:calc(100svh - 52px);display:flex;align-items:center;padding:28px 0 40px;overflow:hidden;position:relative}
+.hero::before{content:"";position:absolute;right:-10%;top:50%;width:min(820px,90vw);aspect-ratio:1;transform:translateY(-50%);background:radial-gradient(closest-side,rgba(255,214,10,.5),rgba(255,214,10,0) 72%);pointer-events:none}
+.hero .wrap{position:relative;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;width:100%}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:var(--yk);background:#FFF6CC;border-radius:980px;padding:6px 14px;margin-bottom:20px}
 .eyebrow i{width:7px;height:7px;border-radius:50%;background:var(--y2)}
-h1{font-size:clamp(40px,7.2vw,80px);line-height:1.04;font-weight:700;letter-spacing:-.035em;max-width:14ch;margin:0 auto}
+h1{font-size:clamp(40px,5.6vw,72px);line-height:1.04;font-weight:700;letter-spacing:-.035em;max-width:13ch}
 h1 .hl{background:linear-gradient(180deg,transparent 62%,var(--y) 62%,var(--y) 92%,transparent 92%);padding:0 .06em}
-.hero .lead{font-size:clamp(19px,2.3vw,24px);color:var(--mute);max-width:32em;margin:22px auto 0;letter-spacing:-.01em}
+.hero .lead{font-size:clamp(18px,1.8vw,21px);color:var(--mute);max-width:28em;margin-top:18px;letter-spacing:-.01em}
 .hero .lead b{color:var(--ink);font-weight:600}
+.cta{display:inline-flex;width:auto;min-width:300px;padding:0 34px;margin-top:30px;height:60px;font-size:18px}
+.cta-fine{font-size:14px;color:var(--mute);margin-top:12px}
+.hero-book{position:relative;justify-self:center}
+.book{display:block;width:clamp(240px,27vw,350px);max-height:calc(100svh - 170px);object-fit:contain;transform:perspective(1600px) rotateY(-14deg) rotateX(4deg);border-radius:6px 14px 14px 6px;box-shadow:-10px 0 0 -3px #2A2A2E,0 50px 80px -30px rgba(0,0,0,.55),0 18px 30px -18px rgba(0,0,0,.4)}
+.badge{position:absolute;left:-26px;bottom:12%;background:#fff;border-radius:16px;padding:12px 16px;font-size:13px;line-height:1.3;color:var(--mute);box-shadow:0 20px 40px -18px rgba(0,0,0,.35)}
+.badge b{display:block;font-size:22px;font-weight:700;letter-spacing:-.03em;color:var(--ink)}
+
+/* pop-up forma */
+.modal{position:fixed;inset:0;z-index:50;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(0,0,0,.42);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.modal.open{display:flex;animation:fade .25s ease}
+.sheet{position:relative;width:100%;max-width:440px;background:#fff;border-radius:26px;padding:30px 26px 24px;box-shadow:0 40px 80px -30px rgba(0,0,0,.5);animation:pop .4s cubic-bezier(.2,.8,.2,1)}
+.sheet h3.t{font-size:26px;font-weight:700;letter-spacing:-.025em;line-height:1.15;padding-right:28px}
+.sheet p.s{color:var(--mute);margin:6px 0 18px;font-size:16px}
+.sheet .x{position:absolute;right:14px;top:14px;width:34px;height:34px;border:0;border-radius:50%;background:#F0F0F3;color:var(--ink);font-size:20px;line-height:1;cursor:pointer}
+.sheet .form{margin:0;max-width:none}
+.sheet .row{flex-direction:column}
+.sheet .done{box-shadow:none;padding:6px 0 0}
+.sheet.is-done h3.t,.sheet.is-done p.s{display:none}
+@keyframes fade{from{opacity:0}to{opacity:1}}
 
 /* form */
 .form{margin:34px auto 0;max-width:560px;text-align:left}
@@ -86,14 +107,6 @@ h1 .hl{background:linear-gradient(180deg,transparent 62%,var(--y) 62%,var(--y) 9
 .form.is-done .done{display:block;animation:pop .45s cubic-bezier(.2,.8,.2,1)}
 @keyframes pop{from{opacity:0;transform:translateY(10px) scale(.98)}to{opacity:1;transform:none}}
 
-/* cover stage */
-.stage{position:relative;margin:64px auto 0;max-width:980px;height:clamp(420px,58vw,620px);overflow:hidden}
-.stage::before{content:"";position:absolute;left:50%;top:58%;width:min(780px,110%);aspect-ratio:1;transform:translate(-50%,-50%);background:radial-gradient(closest-side,rgba(255,214,10,.55),rgba(255,214,10,0) 72%);filter:blur(10px)}
-.book{position:absolute;left:50%;top:0;width:clamp(260px,34vw,360px);transform:translateX(-50%) perspective(1600px) rotateY(-14deg) rotateX(4deg);transform-origin:center;border-radius:6px 14px 14px 6px;overflow:hidden;box-shadow:-10px 0 0 -3px #2A2A2E,0 50px 80px -30px rgba(0,0,0,.55),0 18px 30px -18px rgba(0,0,0,.4)}
-.book::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(255,255,255,.18),transparent 22%,transparent 70%,rgba(255,255,255,.06))}
-.side-page{position:absolute;top:70px;width:clamp(180px,22vw,240px);border-radius:12px;overflow:hidden;box-shadow:0 30px 60px -30px rgba(0,0,0,.35),0 0 0 1px rgba(0,0,0,.04);opacity:.96}
-.side-page.l{left:calc(50% - clamp(330px,40vw,440px));transform:rotate(-6deg)}
-.side-page.r{right:calc(50% - clamp(330px,40vw,440px));transform:rotate(6deg)}
 
 /* sections */
 section{padding:110px 0}
@@ -189,18 +202,28 @@ footer a{color:var(--mute)}
   .stats{grid-template-columns:repeat(2,1fr)}
   .problems,.steps,.who{grid-template-columns:1fr}
   .logos{grid-template-columns:repeat(4,1fr)}
-  .side-page{display:none}
+  .hero{min-height:calc(100svh - 52px);padding:20px 0 24px;text-align:center}
+  .hero::before{right:auto;left:50%;top:62%;transform:translate(-50%,-50%)}
+  .hero .wrap{grid-template-columns:1fr;gap:0;height:100%}
+  .hero-copy{display:contents}
+  .eyebrow{margin:0 auto 12px;font-size:13px;order:1}
+  h1{order:2;margin:0 auto;font-size:clamp(32px,8.6vw,52px)}
+  .hero .lead{order:3;margin:10px auto 0;font-size:16px;max-width:24em}
+  .hero .lead span{display:none}
+  .hero-book{order:4;margin:18px 0 4px}
+  .book{width:auto;height:clamp(200px,calc(100svh - 470px),400px);max-height:none;margin:0 auto}
+  .badge{display:none}
+  .cta{order:5;width:100%;min-width:0;margin:16px auto 0}
+  .cta-fine{order:6;margin-top:10px;font-size:13px}
 }
 @media (max-width:640px){
   section{padding:76px 0}
-  .hero{padding-top:44px}
   .row{flex-direction:column;gap:10px}
   .toc{grid-template-columns:1fr}
   .toc li{padding:22px 22px 22px 76px}
   .toc li span{left:20px;top:22px}
   .author{grid-template-columns:1fr;text-align:center;padding:32px 24px;gap:22px}
   .author img{margin:0 auto;width:128px;height:128px}
-  .stage{height:430px;margin-top:44px}
   .sticky{display:block}
   footer{padding-bottom:96px}
 }
@@ -208,34 +231,22 @@ footer a{color:var(--mute)}
 </head>
 <body>
 
-<nav><div class="wrap"><a class="logo" href="#top" aria-label="Obsess">OBSESS</a><a class="nav-cta" href="#olish">Bepul olish</a></div></nav>
+<nav><div class="wrap"><a class="logo" href="#top" aria-label="Obsess">OBSESS</a><a class="nav-cta" href="#olish" data-open="nav">Bepul olish</a></div></nav>
 
 <main id="top">
 <header class="hero">
   <div class="wrap">
-    <div class="eyebrow"><i></i>Bepul PDF qo‘llanma · 72 bet</div>
-    <h1>30 kunda kuniga <span class="hl">1000 lid</span> olib keluvchi tizim</h1>
-    <p class="lead">Sizda sotuv muammosi yo‘q. <b>Lid muammosi bor.</b> Ko‘proq, sifatli va sotib olishga tayyor mijozlar oqimini jalb qilish tizimi — 200+ loyihada sinalgan.</p>
-
-    <form class="form" data-src="hero" novalidate>
-      <div class="in">
-        <div class="row">
-          <div class="field"><input name="name" type="text" placeholder="Ismingiz" autocomplete="given-name" aria-label="Ismingiz" required></div>
-          <div class="field"><input name="phone" type="tel" placeholder="+998 __ ___ __ __" autocomplete="tel" inputmode="tel" aria-label="Telefon raqamingiz" required></div>
-        </div>
-        <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <button class="btn y" type="submit">Qo‘llanmani bepul olish</button>
-        <p class="msg" role="alert"></p>
-        <p class="fine">Raqamingiz faqat qo‘llanma va foydali materiallar uchun ishlatiladi.</p>
-      </div>
-      <div class="done" aria-live="polite"></div>
-    </form>
-  </div>
-
-  <div class="stage" aria-hidden="true">
-    <img class="side-page l" src="lm-p37.jpg" alt="" width="600" height="900" loading="lazy">
-    <img class="book" src="lm-cover.jpg" alt="" width="800" height="1200">
-    <img class="side-page r" src="lm-p50.jpg" alt="" width="600" height="900" loading="lazy">
+    <div class="hero-copy">
+      <div class="eyebrow"><i></i>Bepul PDF qo‘llanma · 72 bet</div>
+      <h1>30 kunda kuniga <span class="hl">1000 lid</span> olib keluvchi tizim</h1>
+      <p class="lead">Sizda sotuv muammosi yo‘q. <b>Lid muammosi bor.</b><span> Ko‘proq, sifatli va sotib olishga tayyor mijozlar oqimini jalb qilish tizimi — 200+ loyihada sinalgan.</span></p>
+      <button class="btn y cta" type="button" data-open="hero" id="heroCta">Qo‘llanmani bepul olish</button>
+      <p class="cta-fine">Bepul · 30 daqiqada o‘qiladi</p>
+    </div>
+    <div class="hero-book">
+      <img class="book" src="lm-cover.jpg" alt="“30 kun ichida kuniga 1000 lid” qo‘llanmasi muqovasi" width="800" height="1200" fetchpriority="high">
+      <div class="badge"><b>200+</b>loyihada sinalgan</div>
+    </div>
   </div>
 </header>
 
@@ -363,26 +374,36 @@ footer a{color:var(--mute)}
     <img class="cover-sm rv" src="lm-cover.jpg" alt="“30 kun ichida kuniga 1000 lid” qo‘llanmasi muqovasi" width="800" height="1200" loading="lazy">
     <h2 class="rv">Qo‘llanmani hoziroq<br>bepul oling.</h2>
     <p class="sub rv">Ism va raqamingizni qoldiring — PDF shu zahoti ochiladi.</p>
-    <form class="form" data-src="final" novalidate>
+    <button class="btn y cta rv" type="button" data-open="final">PDF ni bepul olish</button>
+    <p class="fine">72 bet · 30 daqiqada o‘qiladi · bepul</p>
+  </div>
+</section>
+</main>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+  <div class="sheet" id="sheet">
+    <button class="x" type="button" data-close aria-label="Yopish">×</button>
+    <h3 class="t" id="mTitle">Qo‘llanmani qayerga yuboraylik?</h3>
+    <p class="s">Ism va raqamingizni qoldiring — PDF shu zahoti ochiladi.</p>
+    <form class="form" data-src="popup" novalidate>
       <div class="in">
         <div class="row">
           <div class="field"><input name="name" type="text" placeholder="Ismingiz" autocomplete="given-name" aria-label="Ismingiz" required></div>
           <div class="field"><input name="phone" type="tel" placeholder="+998 __ ___ __ __" autocomplete="tel" inputmode="tel" aria-label="Telefon raqamingiz" required></div>
         </div>
         <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <button class="btn" type="submit">PDF ni bepul olish</button>
+        <button class="btn y" type="submit">PDF ni olish</button>
         <p class="msg" role="alert"></p>
-        <p class="fine">72 bet · 30 daqiqada o‘qiladi · bepul</p>
+        <p class="fine">Raqamingiz faqat qo‘llanma va foydali materiallar uchun ishlatiladi.</p>
       </div>
       <div class="done" aria-live="polite"></div>
     </form>
   </div>
-</section>
-</main>
+</div>
 
 <footer><div class="wrap"><span>© 2026 Obsess marketing agentligi · Toshkent</span><span><a href="https://t.me/obsessceo">t.me/obsessceo</a> · +998 99 643 30 40</span></div></footer>
 
-<div class="sticky" id="sticky"><a class="btn y" href="#olish">Qo‘llanmani bepul olish</a></div>
+<div class="sticky" id="sticky"><button class="btn y" type="button" data-open="sticky">Qo‘llanmani bepul olish</button></div>
 
 <script>
 /* Kontakt Pulse CRM → "Lid magnit" ga tushadi (sotuv lidi emas). Pixel va CAPI bir xil eventID bilan — Meta dublikatni olib tashlaydi */
@@ -426,7 +447,27 @@ function showDone(name){
       ? `<a class="btn ghost" href="${CONFIG.telegram}" target="_blank" rel="noopener">Bepul konsultatsiyaga yozilish</a>`
       : `<a class="btn ghost" href="https://t.me/obsessceo?text=${encodeURIComponent('1000 lid PDF oldim. Ism: '+LAST.name+', tel: '+LAST.phone)}" target="_blank" rel="noopener">Kontaktni Telegram orqali yuborish</a><p class="fine">Aloqada muammo bo’ldi — kontaktingiz saqlanmagan bo’lishi mumkin. Tugma orqali Telegramda yuboring (xabar tayyor).</p>`}`;
   document.querySelectorAll('form.form').forEach(f=>{ f.querySelector('.done').innerHTML = html; f.classList.add('is-done'); });
+  document.getElementById('sheet').classList.add('is-done');
 }
+
+/* pop-up: har qanday "olish" tugmasi formani ochadi */
+const modal = document.getElementById('modal');
+let lastFocus = null;
+function openModal(src){
+  lastFocus = document.activeElement;
+  modal.querySelector('form').dataset.src = src || 'popup';
+  modal.classList.add('open'); document.body.style.overflow = 'hidden';
+  if(window.fbq && !openModal.sent){ openModal.sent = true; fbq('trackCustom','LeadFormOpen',{lead_magnet:CONFIG.magnet}); }
+  const f = modal.querySelector('input[name=name]');
+  if(f && !modal.querySelector('.form.is-done')) setTimeout(()=>f.focus(), 60);
+}
+function closeModal(){
+  modal.classList.remove('open'); document.body.style.overflow = '';
+  if(lastFocus && lastFocus.focus) lastFocus.focus();
+}
+document.querySelectorAll('[data-open]').forEach(b=>b.addEventListener('click',e=>{ e.preventDefault(); openModal(b.dataset.open); }));
+modal.addEventListener('click',e=>{ if(e.target===modal || e.target.closest('[data-close]')) closeModal(); });
+addEventListener('keydown',e=>{ if(e.key==='Escape' && modal.classList.contains('open')) closeModal(); });
 
 document.querySelectorAll('form.form').forEach(form=>{
   form.addEventListener('submit', async e=>{
@@ -457,8 +498,6 @@ document.querySelectorAll('form.form').forEach(form=>{
     LAST = {name, phone};
     if(window.fbq) fbq('track','Lead',{content_name:'1000 lid tizimi (PDF)', lead_magnet:CONFIG.magnet},{eventID:eventId});
     showDone(name);
-    document.getElementById('sticky').classList.remove('show');
-    form.scrollIntoView({behavior:'smooth',block:'center'});
   });
 });
 
@@ -466,11 +505,10 @@ document.querySelectorAll('form.form').forEach(form=>{
 const io = 'IntersectionObserver' in window ? new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}}),{rootMargin:'0px 0px -8% 0px'}) : null;
 document.querySelectorAll('.rv').forEach(el=>io?io.observe(el):el.classList.add('in'));
 
-/* mobil pastki tugma: hero formasidan o'tgach chiqadi, oxirgi formada yashirinadi */
-const sticky = document.getElementById('sticky'), heroF = document.querySelector('.hero .form'), finalS = document.getElementById('olish');
+/* mobil pastki tugma: hero tugmasidan o'tgach chiqadi, oxirgi bo'limda yashirinadi */
+const sticky = document.getElementById('sticky'), heroB = document.getElementById('heroCta'), finalS = document.getElementById('olish');
 function onScroll(){
-  if(document.querySelector('.form.is-done')) return;
-  const past = heroF.getBoundingClientRect().bottom < 0, atEnd = finalS.getBoundingClientRect().top < innerHeight*.8;
+  const past = heroB.getBoundingClientRect().bottom < 0, atEnd = finalS.getBoundingClientRect().top < innerHeight*.8;
   sticky.classList.toggle('show', past && !atEnd);
 }
 addEventListener('scroll', onScroll, {passive:true});
